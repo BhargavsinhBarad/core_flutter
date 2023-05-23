@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:io';
 
 class Product {
@@ -113,7 +112,15 @@ class customer {
     cart.forEach((e) {
       bill += (e.qty * e.price);
     });
-    print("your bill is $bill");
+    if (bill >= 500 && bill < 1500) {
+      print("your bill is ${(bill * 10) / 100}");
+    } else if (bill >= 1500 && bill < 3500) {
+      print("your bill is ${(bill * 20) / 100}");
+    } else if (bill >= 3500 && bill < 6500) {
+      print("your bill is ${(bill * 25) / 100}");
+    } else {
+      print("your bill is ${(bill * 30) / 100}");
+    }
   }
 }
 
