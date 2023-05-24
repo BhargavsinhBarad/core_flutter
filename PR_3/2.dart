@@ -72,14 +72,15 @@ class customer {
   final String name;
   final int contact;
   int bill = 0;
+  double b=0;
   List<Product> cart = [];
   customer({required this.id, required this.name, required this.contact}) {
     int choice;
 
     do {
       print("1 for add product.");
-      print("2 for remove product.");
-      print("3 for EXIT.");
+      
+      print("2 for EXIT.");
       stdout.write("Enter your choice : ");
       choice = int.parse(stdin.readLineSync()!);
 
@@ -97,30 +98,27 @@ class customer {
           p.qty = q;
           cart.add(p);
           break;
+       
         case 2:
-          stdout.write("Enter product number to Remove in your cart : ");
-          int n = int.parse(stdin.readLineSync()!);
-          cart.removeAt(n);
-          break;
-        case 3:
           break;
         default:
           print("Enter valid Number!!");
           break;
       }
-    } while (choice != 3);
+    } while (choice != 2);
     cart.forEach((e) {
       bill += (e.qty * e.price);
     });
     if (bill >= 500 && bill < 1500) {
-      print("your bill is ${(bill * 10) / 100}");
+      b=(bill * 10) / 100;
     } else if (bill >= 1500 && bill < 3500) {
-      print("your bill is ${(bill * 20) / 100}");
+      b=(bill * 20) / 100;
     } else if (bill >= 3500 && bill < 6500) {
-      print("your bill is ${(bill * 25) / 100}");
+      b=(bill * 25) / 100;
     } else {
-      print("your bill is ${(bill * 30) / 100}");
+     b=(bill * 30) / 100;
     }
+    print("your bill is $b");
   }
 }
 
@@ -142,10 +140,10 @@ void main() {
   cus.forEach((e) {
     do {
       if (cid == e.id) {
-        print("${e.id}\n${e.name}\n${e.bill}");
+        print("${e.id}\n${e.name}\n${e.b}");
       } else {
         print("INVALID NUMBER...");
       }
-    } while (cid == e.id);
+    } while (cid != e.id);
   });
 }
